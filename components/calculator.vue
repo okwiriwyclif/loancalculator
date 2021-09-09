@@ -1,6 +1,6 @@
 <template>
 
-<div class="flex justify-center p-2" >
+<div class="flex justify-center p-4" >
 
 <div  >
 
@@ -53,7 +53,15 @@
 
 
               <select name="loantype" id="loantype" v-model="plan">
-                  <option :value="option" v-for="option in paymentPlans" :key="option.name">{{option.name}}</option>
+                  <option :value="option" v-for="option in plans" :key="option.name" class="flex">
+
+                    <div class="flex justify-between w-full">
+                        <div class="pr-6">{{option.name}}</div>
+
+                        <div>({{option.rate}}%)</div>
+                        
+                    </div>  
+                    </option>
               </select>
               
               
@@ -72,7 +80,7 @@
               <div class="inputtitle">
                 Months to repay
               </div>
-              <input type="number" name="" id="" v-model="duration">
+              <input type="number" name="" id="" v-model="plan.period">
           </div>
 
 
@@ -96,9 +104,11 @@ export default {
             amount:null,
 
             plan:{
-                    name:"plan 1",
-                    rate:5,
-                },
+                name:"Asset Financing",
+                rate:14,
+                period:40,
+                max:99999999,
+            },
 
             duration:12,
 
@@ -124,15 +134,18 @@ export default {
     },
 
     computed:{
+        plans(){
+            return this.$store.state.plans
+        },
         interest(){
             let rate=this.plan.rate / 100
             if(!this.amount){
                 return 0
             }
 
-            if(this.duration>12){
-                rate=rate+(0.1*0.01*(this.duration-12));
-            }
+            // if(this.duration>12){
+            //     rate=rate+(0.1*0.01*(this.duration-12));
+            // }
 
             return (this.amount *rate);
         },
@@ -144,7 +157,7 @@ export default {
         },
 
         monthlyPayment(){
-            let monthlypay=this.totalPayment/this.duration;
+            let monthlypay=this.totalPayment/this.plan.period;
             return parseInt(monthlypay);
 
         }
