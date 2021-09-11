@@ -53,7 +53,7 @@
 
 
               <select name="loantype" id="loantype" v-model="plan">
-                  <option :value="option" v-for="option in plans" :key="option.name" class="flex">
+                  <option :value="option" v-for="option in plans" :key="option.max+option.name +option.rate" class="flex">
 
                     <div class="flex justify-between w-full">
                         <div class="pr-6">{{option.name}}</div>
