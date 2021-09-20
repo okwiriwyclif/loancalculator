@@ -1,6 +1,6 @@
 <template>
 
-<div class="flex justify-center p-4" >
+<div class="calculatorwrap flex justify-center p-4" >
 
 <div  >
 
@@ -47,7 +47,7 @@
               <div class="inputtitle">
                  Your shares
               </div>
-              <input type="text" name="" id="" v-model.number="amount">
+              <input type="text" name="" id="" v-model.number="amount" min="0" :max="plan.max">
           </div>
 
 
@@ -175,6 +175,13 @@ export default {
 </script>
 
 <style>
+
+.calculatorwrap{
+    max-width: 500px;
+    overflow: hidden;
+}
+
+
 .payments .monthlypayments{
    padding: 1rem;
 }
@@ -186,6 +193,7 @@ export default {
     border-radius: 12px;
     background: #f3f4f8;
     border-radius: 8px;
+    overflow: hidden;
 
 }
 
