@@ -6,19 +6,24 @@
 
     <div class="payments flex flex-wrap w-full my-2">
 
-        <div class="monthlypayments lg:w-1/3 p-2 ">
+        <div class="monthlypayments lg:w-1/2 p-2 ">
+            <div class="title">Max Loan Amount</div>
+            <div class="amount"><moneyformat :amount="loanAmount"/></div>
+        </div>
+
+        <div class="monthlypayments lg:w-1/2 p-2 ">
             <div class="title">Monthly payment</div>
             <div class="amount"><moneyformat :amount="monthlyPayment"/></div>
         </div>
 
 
-        <div class="monthlypayments lg:w-1/3 p-2">
+        <div class="monthlypayments lg:w-1/2 p-2">
             <div class="title">Total Interest</div>
             <div class="amount"> <moneyformat :amount="interest"/></div>
         </div>
 
 
-        <div class="monthlypayments lg:w-1/3 p-2">
+        <div class="monthlypayments lg:w-1/2 p-2">
             <div class="title">Total payment</div>
             <div class="amount"> <moneyformat :amount="totalPayment"/> </div>
         </div>
@@ -40,7 +45,7 @@
 
           <div class="inputsection">
               <div class="inputtitle">
-                 Amount 
+                 Your shares
               </div>
               <input type="text" name="" id="" v-model.number="amount">
           </div>
@@ -137,21 +142,24 @@ export default {
         plans(){
             return this.$store.state.plans
         },
-        interest(){
-            let rate=this.plan.rate / 100
+        loanAmount(){
+
             if(!this.amount){
                 return 0
             }
+           return this.amount*3
+        },
+        interest(){
+            let rate=this.plan.rate / 100
+            if(!this.loanAmount){
+                return 0
+            }
 
-            // if(this.duration>12){
-            //     rate=rate+(0.1*0.01*(this.duration-12));
-            // }
-
-            return (this.amount *rate);
+            return (this.loanAmount *rate);
         },
 
         totalPayment(){
-            let total=this.amount+this.interest;
+            let total=this.loanAmount+this.interest;
             return  parseInt(total);
 
         },
