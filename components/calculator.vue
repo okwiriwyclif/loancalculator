@@ -2,7 +2,7 @@
 
 <div class="calculatorwrap flex justify-center p-4" >
 
-<div>
+<div class="w-full">
 
     <div >
 
@@ -214,7 +214,7 @@ export default {
 .calculatorwrap{
     
     overflow: hidden;
-    max-width: 940px;
+    width: 100%;
     left: 250px;
     top: 409px;
     border-radius: 8px;
@@ -300,7 +300,6 @@ export default {
 
 
 .calculator .form{
-    max-width: 960px;
     width: 100%;
 }
 
@@ -331,7 +330,6 @@ export default {
 
 
     height: 64px;
-    max-width: 420px;
     width: 100%;
     top: 800px;
     border-radius: 4px;
