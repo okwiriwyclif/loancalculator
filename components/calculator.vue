@@ -2,31 +2,67 @@
 
 <div class="calculatorwrap flex justify-center p-4" >
 
-<div  >
+<div>
+
+    <div >
+
+        <h4>
+            Your results
+        </h4>
+
+    </div>
 
     <div class="payments flex flex-wrap w-full my-2">
 
-        <div class="monthlypayments lg:w-1/2 p-2 ">
-            <div class="title">Max Loan Amount</div>
-            <div class="amount"><moneyformat :amount="loanAmount"/></div>
+        <div class="w-full lg:w-1/2 lg:pr-6">
+
+            <div class="monthlypayments payment borderbottomlight  w-full  flex items-center justify-between ">
+                <div class="title  flex items-center">
+                <moneybagicon/>  Max Loan Amount
+                </div>
+                <div class="amount"><moneyformat :amount="loanAmount"/></div>
+            </div>
+
         </div>
 
-        <div class="monthlypayments lg:w-1/2 p-2 ">
-            <div class="title">Monthly payment</div>
-            <div class="amount"><moneyformat :amount="monthlyPayment"/></div>
+        <div class=" w-full lg:w-1/2 ">
+
+            <div class="monthlypayments payment borderbottomlight  flex items-center justify-between ">
+
+                <div class="title  flex items-center">
+                <calendericon/>  Monthly payment
+                </div>
+                <div class="amount"><moneyformat :amount="monthlyPayment"/></div>
+
+            </div>
+
         </div>
 
+        
+        <div class="w-full lg:w-1/2 lg:pr-6">
 
-        <div class="monthlypayments lg:w-1/2 p-2">
-            <div class="title">Total Interest</div>
+        <div class="monthlypayments payment w-full  flex items-center justify-between ">
+            <div class="title flex items-center">
+              <rateicon/>  Total Interest
+            </div>
             <div class="amount"> <moneyformat :amount="interest"/></div>
         </div>
 
+         </div>
 
-        <div class="monthlypayments lg:w-1/2 p-2">
-            <div class="title">Total payment</div>
-            <div class="amount"> <moneyformat :amount="totalPayment"/> </div>
+
+
+
+        <div class="monthlypayments payment w-full lg:w-1/2 flex items-center justify-between">
+
+                <div class="title flex items-center">
+                <moneyicon/> Total payment
+                </div>
+                <div class="amount"> <moneyformat :amount="totalPayment"/> </div>
+
         </div>
+
+       
 
 
         
@@ -36,22 +72,21 @@
 
 
   <div class="calculator py-4">
-      <div class="title text-center">
-          Loan Calculator
-      </div>
+     
 
 
-      <div class="form py-4">
+      <div class="form py-4 flex flex-wrap">
 
-          <div class="inputsection">
+          <div class="inputsection w-full lg:pr-6 lg:w-1/2 ">
               <div class="inputtitle">
                  Your shares
               </div>
-              <input type="text" name="" id="" v-model.number="amount" min="0" :max="plan.max">
+              <input placeholder="Your total shares in nacico" type="text" name="" id="" v-model.number="amount" min="0" :max="plan.max">
           </div>
 
 
-          <div class="inputsection">
+          <div class="inputsection w-full   lg:w-1/2  ">
+
               <div class="inputtitle">
                  Loan Plan
               </div>
@@ -73,19 +108,19 @@
           </div>
 
 
-          <div class="inputsection">
+          <div class="inputsection w-full lg:pr-6  lg:w-1/2">
               <div class="inputtitle">
                 Interest Rate (%)
               </div>
-              <input type="number" name="" id="" v-model="plan.rate">
+              <input type="number" name="" id="" v-model="plan.rate" disabled>
           </div>
 
 
-          <div class="inputsection">
+          <div class="inputsection w-full  lg:w-1/2">
               <div class="inputtitle">
                 Months to repay
               </div>
-              <input type="number" name="" id="" v-model="plan.period">
+              <input type="number" name="" id="" v-model="plan.period" disabled>
           </div>
 
 
@@ -177,58 +212,108 @@ export default {
 <style>
 
 .calculatorwrap{
-    max-width: 500px;
+    
     overflow: hidden;
+    max-width: 940px;
+    left: 250px;
+    top: 409px;
+    border-radius: 8px;
+    border: 1px solid #F1F3F5;
+    padding: 2rem 2.6rem;
+    box-shadow: 0px 4px 14px 1px #2B374121;
+
+
+}
+
+.calculatorwrap svg{
+    width: 24px;
+    margin-right:12px ;
+}
+
+.calculatorwrap h4{
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #202930;
+
 }
 
 
 .payments .monthlypayments{
-   padding: 1rem;
+   padding-top:1.6rem ;
+   padding-bottom:1.6rem;
 }
+
+
 
 .payments{
-    padding: 1rem;
-    /* border:1px solid #242265 ;
-    border:1px solid #24226577 ; */
-    border-radius: 12px;
-    background: #f3f4f8;
-    border-radius: 8px;
+
+    padding: .6rem 0px;
     overflow: hidden;
+    border-bottom: 3px solid #A8A7C1;
+    color: #202930;
+    padding-bottom: 1.6rem;
+    margin-bottom: 1rem;
 
-}
-
-.payments .title{
-    font-weight: bold;
-    font-size: 14px;
 }
 
 .payments .amount{
-    white-space: nowrap;
-    /* font-size: 26px;
-    font-weight: bold; */
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
 }
+
+.payments .title{
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.payments .amount{
+
+    white-space: nowrap;
+
+}
+
+.calculatorwrap .borderbottomlight{
+
+    border-bottom: 1px solid #E5E9EC;
+
+}
+
 .calculator .title{
+
     font-family: Poppins, sans-serif;
     color: #242265;
     font-size: 24px;
     line-height: 36px;
     font-weight: 700;
     margin-bottom: 12px;
+
 }
 
-.payments .title{
-    white-space: nowrap;
-}
+
 
 .calculator .form{
-    max-width: 600px;
+    max-width: 960px;
     width: 100%;
 }
 
 .calculator .inputtitle{
-    font-weight: 600;
-    font-size: 14px;
-    margin: 2px 0px;
+   
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #405261;
+
 }
 
 .calculator .form input,.calculator .form select{
@@ -243,6 +328,14 @@ export default {
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 6px;
+
+
+    height: 64px;
+    max-width: 420px;
+    width: 100%;
+    top: 800px;
+    border-radius: 4px;
+
 }
 
 </style>
