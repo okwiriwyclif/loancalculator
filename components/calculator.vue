@@ -4,7 +4,7 @@
 
 <div class="w-full">
 
-    <div >
+    <div class="largescreen" >
 
         <h4>
             Your results
@@ -12,55 +12,69 @@
 
     </div>
 
-    <div class="payments flex flex-wrap w-full my-2">
+    <div class="payments largescreen flex flex-wrap w-full my-2">
 
-        <div class="w-full lg:w-1/2 lg:pr-6">
+        <div class="column-1">
 
-            <div class="monthlypayments payment borderbottomlight  w-full  flex items-center justify-between ">
-                <div class="title  flex items-center">
-                <moneybagicon/>  Max Loan Amount
+            <div class="w-full ">
+
+                <div class="monthlypayments payment borderbottomlight  w-full  flex items-center justify-between ">
+                    <div class="title  flex items-center">
+                    <moneybagicon/>  Max Loan Amount
+                    </div>
+                    <div class="amount"><moneyformat :amount="loanAmount"/></div>
                 </div>
-                <div class="amount"><moneyformat :amount="loanAmount"/></div>
+
             </div>
+
+
+            <div class="w-full ">
+
+                <div class="monthlypayments payment w-full  flex items-center justify-between ">
+                    <div class="title flex items-center">
+                    <rateicon/>  Total Interest
+                    </div>
+                    <div class="amount"> <moneyformat :amount="interest"/></div>
+                </div>
+
+            </div>
+
+
 
         </div>
 
-        <div class=" w-full lg:w-1/2 ">
 
-            <div class="monthlypayments payment borderbottomlight  flex items-center justify-between ">
+        <div class="column-2">
 
-                <div class="title  flex items-center">
-                <calendericon/>  Monthly payment
+            
+            <div class=" w-full ">
+
+                <div class="monthlypayments payment borderbottomlight  flex items-center justify-between ">
+
+                    <div class="title  flex items-center">
+                    <calendericon/>  Monthly payment
+                    </div>
+                    <div class="amount"><moneyformat :amount="monthlyPayment"/></div>
+
                 </div>
-                <div class="amount"><moneyformat :amount="monthlyPayment"/></div>
 
             </div>
 
+
+            <div class="monthlypayments payment w-full  flex items-center justify-between">
+
+                    <div class="title flex items-center">
+                    <moneyicon/> Total payment
+                    </div>
+                    <div class="amount"> <moneyformat :amount="totalPayment"/> </div>
+
+            </div>
+
+            
         </div>
 
         
-        <div class="w-full lg:w-1/2 lg:pr-6">
 
-        <div class="monthlypayments payment w-full  flex items-center justify-between ">
-            <div class="title flex items-center">
-              <rateicon/>  Total Interest
-            </div>
-            <div class="amount"> <moneyformat :amount="interest"/></div>
-        </div>
-
-         </div>
-
-
-
-
-        <div class="monthlypayments payment w-full lg:w-1/2 flex items-center justify-between">
-
-                <div class="title flex items-center">
-                <moneyicon/> Total payment
-                </div>
-                <div class="amount"> <moneyformat :amount="totalPayment"/> </div>
-
-        </div>
 
        
 
@@ -77,15 +91,32 @@
 
       <div class="form py-4 flex flex-wrap">
 
-          <div class="inputsection w-full lg:pr-6 lg:w-1/2 ">
+
+        <div class="column-1">
+
+            <div class="inputsection w-full">
+
               <div class="inputtitle">
                  Your shares
               </div>
               <input placeholder="Your total shares in nacico" type="text" name="" id="" v-model.number="amount" min="0" :max="plan.max">
+         
+            </div>  
+
+          <div class="inputsection w-full ">
+              <div class="inputtitle">
+                Interest Rate (%)
+              </div>
+              <input type="number" name="" id="" v-model="plan.rate" disabled>
           </div>
 
 
-          <div class="inputsection w-full   lg:w-1/2  ">
+        </div>
+
+
+        <div class="column-2">
+
+          <div class="inputsection w-full ">
 
               <div class="inputtitle">
                  Loan Plan
@@ -108,25 +139,84 @@
           </div>
 
 
-          <div class="inputsection w-full lg:pr-6  lg:w-1/2">
-              <div class="inputtitle">
-                Interest Rate (%)
-              </div>
-              <input type="number" name="" id="" v-model="plan.rate" disabled>
-          </div>
-
-
-          <div class="inputsection w-full  lg:w-1/2">
+          <div class="inputsection w-full">
               <div class="inputtitle">
                 Months to repay
               </div>
               <input type="number" name="" id="" v-model="plan.period" disabled>
           </div>
 
-
+          </div>
 
 
       </div>
+
+    <div class="smallscreen" >
+
+        <h4>
+            Your results
+        </h4>
+
+    </div>
+
+
+    
+    <div class="payments smallscreen flex flex-wrap w-full my-2">
+
+        <div class="w-full md:w-1/2 lg:w-1/2 lg:pr-6">
+
+            <div class="monthlypayments payment borderbottomlight  w-full    ">
+                <div class="title  flex items-center">
+                <moneybagicon/>  Max Loan Amount
+                </div>
+                <div class="amount px-10"><moneyformat :amount="loanAmount"/></div>
+            </div>
+
+        </div>
+
+        <div class=" w-full md:w-1/2 lg:w-1/2 ">
+
+            <div class="monthlypayments payment borderbottomlight   ">
+
+                <div class="title  flex items-center">
+                <calendericon/>  Monthly payment
+                </div>
+                <div class="amount px-10"><moneyformat :amount="monthlyPayment"/></div>
+
+            </div>
+
+        </div>
+
+        
+        <div class="w-full md:w-1/2 lg:w-1/2 lg:pr-6">
+
+        <div class="monthlypayments payment w-full  ">
+            <div class="title flex items-center">
+              <rateicon/>  Total Interest
+            </div>
+            <div class="amount px-10"> <moneyformat :amount="interest"/></div>
+        </div>
+
+         </div>
+
+
+
+
+        <div class="monthlypayments payment w-full md:w-1/2 lg:w-1/2 ">
+
+                <div class="title flex items-center">
+                <moneyicon/> Total payment
+                </div>
+                <div class="amount px-10"> <moneyformat :amount="totalPayment"/> </div>
+
+        </div>
+
+       
+
+
+        
+
+    </div>
 
 
   </div>
@@ -303,6 +393,16 @@ export default {
     width: 100%;
 }
 
+.calculatorwrap .column-1,.calculatorwrap .column-2{
+    width: 50%;
+    
+}
+
+.calculatorwrap .column-1{
+  
+    padding-right: 1rem;
+}
+
 .calculator .inputtitle{
    
     font-size: 16px;
@@ -335,5 +435,38 @@ export default {
     border-radius: 4px;
 
 }
+
+.smallscreen{
+    display: none;
+}
+
+@media (max-width:600px) {
+
+.calculatorwrap{
+    padding: .8rem;
+}
+
+.largescreen{
+    display: none;
+}
+
+.smallscreen{
+    display: flex;
+}
+
+
+.calculatorwrap .column-1,.calculatorwrap .column-2{
+    width: 100%;
+    
+}
+
+.calculatorwrap .column-1{
+  
+    padding-right: 0rem;
+}
+
+}
+
+
 
 </style>
